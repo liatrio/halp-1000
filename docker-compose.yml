@@ -1,0 +1,11 @@
+version: "2.2"
+services:
+  halp-1000:
+    container_name: halp-1000
+    entrypoint: npm start
+    ports:
+      - 3000:3000
+    build: .
+    environment:
+      - CLIENT_SIGNING_SECRET
+      - BOT_TOKEN
