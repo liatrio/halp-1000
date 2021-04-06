@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: halp-1000
+  description: Hump Day post bot
+  tags:
+    - node
+    - javascript
+    - azure
+    - bot
+spec:
+  type: service
+  lifecycle: experimental
+  owner: liatrio
+  system: halp
