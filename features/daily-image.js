@@ -29,6 +29,7 @@ module.exports = function(controller) {
   controller.on('slash_command', async (bot, message) => {
     console.log(message);
     if (message.command == '/daily-image') {
+      await bot.changeContext(message.reference);
       await getImage(bot, message);
     }
   });
