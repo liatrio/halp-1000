@@ -23,7 +23,7 @@ async function getImage(bot, message, imageSearchString) {
   let searchUrl = 'https://api.bing.microsoft.com/v7.0/images/search?q='+imageSearchString+'&size=medium&mkt=en-us&count=50'
   await axios.get(searchUrl, { 
     headers: {
-      'Ocp-Apim-Subscription-Key': process.env.BING_API_KEY
+      'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_API_KEY
     }
   })
   .then(response => {

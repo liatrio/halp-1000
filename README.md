@@ -86,7 +86,7 @@ and progress with development.
 
 #### Developing with the daily-image feature
 [daily-image](./features/daily-image.js) retrieves a random funny image from the Bing Image Search API
-1. To search for an image you need the environment variable `BING_API_KEY`
+1. To search for an image you need the environment variable `BING_SEARCH_API_KEY`
    1. Retrieve this after creating your [Bing search resource](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource#create-your-bing-resource)
 
 
