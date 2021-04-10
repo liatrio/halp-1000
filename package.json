@@ -5,7 +5,7 @@
     "main": "bot.js",
     "scripts": {
         "start": "node bot.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Warning: no test specified\" && exit 0"
     },
     "dependencies": {
         "botbuilder-adapter-slack": "^1.0.13",
