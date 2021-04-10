@@ -27,13 +27,12 @@ our app. We'll need to re-install the app later as we add new permission scopes.
 prompts to install the app.
 2. On the *Basic Information* tab under *Settings*, find your App Credentials.
 Show the *Signing Secret* value, and save it for later.
-3. On the *Install App* tab under *Settings* copy the *Bot User OAuth Access Token*
+1. On the *Install App* tab under *Settings* copy the *Bot User OAuth Access Token*
 value, and save it for later.
-4. In your cloned copy of the repo, create a file called `.env`, it should look
-something like:
+1. In your cloned copy of the repo, create a file called `.env`, it should contain the following environment variables:
 ```
-SIGNING_SECRET=SECRET GOES HERE
-BOT_USER_OAUTH_ACCESS_TOKEN=SECRET GOES HERE
+CLIENT_SIGNING_SECRET=SECRET GOES HERE
+BOT_TOKEN=SECRET GOES HERE
 ```
 Replace the values after the equals sign with the values you saved before.
 There is no need for quotes. **Make sure to not share these values, and to not
@@ -78,6 +77,12 @@ to reinstall the app any time you request additional scopes.
 With all of these steps complete, your bot should be running in the Slack
 workspace you chose to develop for. You should now be ready to test your bot,
 and progress with development.
+
+#### Creating a Slash Command
+1. Under *Slash Commands* select *Create New Command*
+2. Add the slash command you wish to use - this can be anything you wish to add as a message you want your bot to respond to.
+3. Add a short description and save your changes.
+4. If this is the first slash command you're adding you will need to reinstall the bot to your workspace.
 
 [Botkit Docs](https://botkit.ai/docs/v4)
 
