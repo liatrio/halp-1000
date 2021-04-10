@@ -84,5 +84,12 @@ and progress with development.
 3. Add a short description and save your changes.
 4. If this is the first slash command you're adding you will need to reinstall the bot to your workspace.
 
+#### Developing with the daily-image feature
+[daily-image](./features/daily-image.js) retrieves a random funny image from the Bing Image Search API
+1. To search for an image you need the environment variable `BING_API_KEY`
+   1. Retrieve this after creating your [Bing search resource](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource#create-your-bing-resource)
+
+
+#### Botkit Dev Resources
 [Botkit Docs](https://botkit.ai/docs/v4)
 
