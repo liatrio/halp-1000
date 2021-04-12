@@ -81,8 +81,9 @@ and progress with development.
 #### Creating a Slash Command
 1. Under *Slash Commands* select *Create New Command*
 2. Add the slash command you wish to use - this can be anything you wish to add as a message you want your bot to respond to.
-3. Add a short description and save your changes.
-4. If this is the first slash command you're adding you will need to reinstall the bot to your workspace.
+3. Add the request URL of your bot including the path to its message interface `/api/messages` (local dev will need to be your ngrok URL such as `https://${NGROK_HOSTNAME}/api/messages`)
+4. Add a short description and save your changes.
+5. If this is the first slash command you're adding you will need to reinstall the bot to your workspace.
 
 #### Developing with the daily-image feature
 [daily-image](./features/daily-image.js) retrieves a random funny image from the Bing Image Search API

@@ -12,8 +12,6 @@ module.exports = function(controller) {
     if (message.command == '/daily-image') {
       let imageSearchString = getImageQueryString(message.text.trim());
       console.log('Image Search String = '+imageSearchString);
-      //This is an interesting workaround to handle timing of the nested promises
-      await bot.changeContext(message.reference);
       await getImage(bot, message, imageSearchString);
     }
   });
@@ -21,22 +19,15 @@ module.exports = function(controller) {
 
 async function getImage(bot, message, imageSearchString) {
   let searchUrl = 'https://api.bing.microsoft.com/v7.0/images/search?q='+imageSearchString+'&size=medium&mkt=en-us&count=50'
-  await axios.get(searchUrl, { 
+  let searchResponse = await axios.get(searchUrl, { 
     headers: {
       'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_API_KEY
     }
   })
-  .then(response => {
-    console.log(response);
-    let imageResult = response.data.value[Math.floor(Math.random() * response.data.value.length)];
-    console.log(`Image result count: ${response.data.value.length}`);
-    console.log(`Image web search url: ${imageResult.webSearchUrl}`);
-    // Reply to your request with the image URL
-    bot.reply(message, imageResult.contentUrl);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  let imageResult = searchResponse.data.value[Math.floor(Math.random() * searchResponse.data.value.length)];
+  console.log(`Image web search url: ${imageResult.webSearchUrl}`);
+  console.log(`Image content url: ${imageResult.contentUrl}`);
+  await bot.reply(message, imageResult.contentUrl);
 };
 
 function getImageQueryString(messageText){
