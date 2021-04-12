@@ -27,13 +27,12 @@ our app. We'll need to re-install the app later as we add new permission scopes.
 prompts to install the app.
 2. On the *Basic Information* tab under *Settings*, find your App Credentials.
 Show the *Signing Secret* value, and save it for later.
-3. On the *Install App* tab under *Settings* copy the *Bot User OAuth Access Token*
+1. On the *Install App* tab under *Settings* copy the *Bot User OAuth Access Token*
 value, and save it for later.
-4. In your cloned copy of the repo, create a file called `.env`, it should look
-something like:
+1. In your cloned copy of the repo, create a file called `.env`, it should contain the following environment variables:
 ```
-SIGNING_SECRET=SECRET GOES HERE
-BOT_USER_OAUTH_ACCESS_TOKEN=SECRET GOES HERE
+CLIENT_SIGNING_SECRET=SECRET GOES HERE
+BOT_TOKEN=SECRET GOES HERE
 ```
 Replace the values after the equals sign with the values you saved before.
 There is no need for quotes. **Make sure to not share these values, and to not
@@ -79,5 +78,19 @@ With all of these steps complete, your bot should be running in the Slack
 workspace you chose to develop for. You should now be ready to test your bot,
 and progress with development.
 
+#### Creating a Slash Command
+1. Under *Slash Commands* select *Create New Command*
+2. Add the slash command you wish to use - this can be anything you wish to add as a message you want your bot to respond to.
+3. Add the request URL of your bot including the path to its message interface `/api/messages` (local dev will need to be your ngrok URL such as `https://${NGROK_HOSTNAME}/api/messages`)
+4. Add a short description and save your changes.
+5. If this is the first slash command you're adding you will need to reinstall the bot to your workspace.
+
+#### Developing with the daily-image feature
+[daily-image](./features/daily-image.js) retrieves a random funny image from the Bing Image Search API
+1. To search for an image you need the environment variable `BING_SEARCH_API_KEY`
+   1. Retrieve this after creating your [Bing search resource](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource#create-your-bing-resource)
+
+
+#### Botkit Dev Resources
 [Botkit Docs](https://botkit.ai/docs/v4)
 
