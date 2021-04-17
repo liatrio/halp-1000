@@ -1,6 +1,6 @@
 name: Build, Publish, Deploy
 
-on: [push]
+on: [push] 
 
 env:
   AZURE_FUNCTIONAPP_NAME: halp-1000   # set this to your application's name
@@ -8,7 +8,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
 
@@ -17,11 +17,16 @@ jobs:
         login-server: halp1000.azurecr.io
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-
-    - run: |
-        docker build . -t halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}
-        docker push halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}     
-
+    - name: Docker Build
+      run: docker build . -t halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}
+    - name: Docker Push
+      if: github.ref == 'refs/heads/main'
+      run: docker push halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}     
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
