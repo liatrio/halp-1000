@@ -33,7 +33,12 @@ async function getImage(bot, message, imageSearchString) {
   console.log(`Image web search url: ${imageResult.webSearchUrl}`);
   console.log(`Image content url: ${imageResult.contentUrl}`);
   // Respond with the contentUrl of the image which is set to "medium" resolution in our search string
-  await bot.reply(message, imageResult.contentUrl);
+  const content = {  blocks: [{
+                      "type": "image",
+                      "image_url": imageResult.contentUrl,
+                      "alt_text": "halp-1000" }]
+                  };
+  await bot.reply(message, content);
 };
 
 function getImageQueryString(messageText){
