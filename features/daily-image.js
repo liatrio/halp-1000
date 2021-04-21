@@ -13,6 +13,11 @@ module.exports = function(controller) {
       console.log('Image Search String = '+imageSearchString);
       await getImage(bot, message, imageSearchString);
     }
+    // keeping the original hump-day slash command but searching for random image instead
+    if (message.command == '/wednesday') {
+      let imageSearchString = "camel+wednesday+hump+day+funny+meme";
+      await getImage(bot, message, imageSearchString);
+    }
   });
  };
 
@@ -50,19 +55,19 @@ function getImageQueryString(messageText){
   let searchString = 'funny+meme';
   console.log("Today is day #"+day);
   switch(day) {
-    case "1": //monday
+    case 1: //monday
       searchString = 'monday+funny+meme';
       break;
-    case "2": //tuesday
+    case 2: //tuesday
       searchString = 'taco+tuesday+funny+meme';
       break;
-    case "3": //wednesday
+    case 3: //wednesday
       searchString = 'camel+wednesday+hump+day+funny+meme';
       break;
-    case "4": //thursday
+    case 4: //thursday
       searchString = 'thursday+funny+meme';
       break;
-    case "5": //friday
+    case 5: //friday
       searchString = 'friday+funny+meme';
       break;
     default: //weekend
