@@ -18,8 +18,19 @@ module.exports = function(controller) {
       let imageSearchString = "camel+wednesday+hump+day+funny+meme";
       await getImage(bot, message, imageSearchString);
     }
+    // Sometimes we hear mernin....
+    if (message.command == '/mernin') {
+      const content = {
+        blocks: [{
+          "type": "image",
+          "image_url": process.env.MERNIN_IMAGE,
+          "alt_text": "mernin" 
+        }]
+      };
+      await bot.reply(message, content);
+    }
   });
- };
+};
 
 /**  
  * Using the bing image search api which requires an api key you receive from creating a search resource:
