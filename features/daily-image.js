@@ -29,6 +29,17 @@ module.exports = function(controller) {
       };
       await bot.reply(message, content);
     }
+    // Sometimes we hear thorsday....
+    if (message.command == '/thorsday') {
+      const content = {
+        blocks: [{
+          "type": "image",
+          "image_url": process.env.THORSDAY_IMAGE,
+          "alt_text": "Happy Thorsday" 
+        }]
+      };
+      await bot.reply(message, content);
+    }
   });
 };
 
