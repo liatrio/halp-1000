@@ -40,6 +40,17 @@ module.exports = function(controller) {
       };
       await bot.reply(message, content);
     }
+    // Sometimes we hear fine....
+    if (message.command == '/fine') {
+      const content = {
+        blocks: [{
+          "type": "image",
+          "image_url": process.env.FINE_IMAGE,
+          "alt_text": "This is fine." 
+        }]
+      };
+      await bot.reply(message, content);
+    }
   });
 };
 
