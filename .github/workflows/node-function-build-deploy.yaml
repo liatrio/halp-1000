@@ -20,12 +20,24 @@ jobs:
     - name: Docker Build
       run: docker build . -t halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}
     - name: Docker Push
-      if: github.ref == 'refs/heads/main'
+#       if: github.ref == 'refs/heads/main'
       run: docker push halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}     
-    - uses: azure/webapps-deploy@v2
-      name: Publish Function
-      if: github.ref == 'refs/heads/main'
+#     - uses: azure/webapps-deploy@v2
+#       name: Publish Function
+#       if: github.ref == 'refs/heads/main'
+#       with:
+#         app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
+#         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+#         images: 'halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}'
+    - name: 'Deploy Azure Function App'
+      uses: Azure/functions-container-action@v1
+      id: fa
       with:
         app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        images: 'halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}'
+        image: 'halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}'
+    - name: 'App URL'
+      run: |
+        echo "${{ steps.fa.outputs.app-url }}"
+    - name: Azure logout
+      run: |
+        az logout
