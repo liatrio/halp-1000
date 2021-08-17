@@ -20,15 +20,12 @@ jobs:
     - name: Docker Build
       run: docker build . -t halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}
     - name: Docker Push
-#       if: github.ref == 'refs/heads/main'
-      run: docker push halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}     
-#     - uses: azure/webapps-deploy@v2
-#       name: Publish Function
-#       if: github.ref == 'refs/heads/main'
-#       with:
-#         app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
-#         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-#         images: 'halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}'
+      if: github.ref == 'refs/heads/main'
+      run: docker push halp1000.azurecr.io/${{ env.AZURE_FUNCTIONAPP_NAME }}:${{ github.sha }}
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
